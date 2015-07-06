@@ -35,13 +35,13 @@ libcodegen: $(MODULES_LIB)
 ifeq ($(UNAME),Darwin)
 	libtool -dynamic -flat_namespace -install_name libcodegen.$(VERSION).dylib -lSystem -compatibility_version $(VERSION_COMPAT) \
 		-macosx_version_min 10.6 -current_version $(VERSION) -o libcodegen.$(VERSION).dylib -undefined suppress \
-	    $(MODULES_LIB) -framework vecLib -framework Accelerate
+	    $(MODULES_LIB) -framework Accelerate
 else
 	$(CXX) -shared -fPIC -Wl,-soname,$(SONAME) -o $(LIBNAME).$(VERSION) $(MODULES_LIB) -lz
 endif
 
 echoprint-codegen: $(MODULES) main.o
-	$(CXX) $(MODULES) $(LDFLAGS) main.o -o ../echoprint-codegen
+	$(CXX) $(MODULES) main.o $(LDFLAGS) -o ../echoprint-codegen
 
 %.o: %.c %.h
 	$(CC) $(CFLAGS) -c -o $@ $<
