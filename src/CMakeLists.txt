@@ -12,6 +12,9 @@ FILE(GLOB codegen_SRCS
   )
 FILE(GLOB codegen_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 
+SET(BOOST_ROOT "C:\\boost_1_46_1")
+INCLUDE_DIRECTORIES( ${BOOST_ROOT} )
+
 # Find package taglib.
 FIND_PATH(TagLib_INCLUDE_DIRS fileref.h
   PATH_SUFFIXES taglib
