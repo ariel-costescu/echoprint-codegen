@@ -12,7 +12,7 @@
 #include <string>
 #include <math.h>
 #include "File.h"
-#if defined(_WIN32) && !defined(__MINGW32__)
+#if defined(_WIN32)
 #define snprintf _snprintf
 #define DEVNULL "nul"
 #else
