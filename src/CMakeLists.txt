@@ -11,6 +11,21 @@ FILE(GLOB codegen_SRCS
   "${CMAKE_CURRENT_SOURCE_DIR}/Metadata.cxx"
   "${CMAKE_CURRENT_SOURCE_DIR}/SubbandAnalysis.cxx"
   "${CMAKE_CURRENT_SOURCE_DIR}/Whitening.cxx"
+  "${CMAKE_CURRENT_SOURCE_DIR}/adler32.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/compress.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/crc32.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/deflate.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/gzclose.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/gzlib.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/gzread.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/gzwrite.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/infback.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/inffast.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/inflate.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/inftrees.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/trees.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/uncompr.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/zutil.c"
   )
 FILE(GLOB codegen_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 
@@ -27,7 +42,6 @@ FIND_LIBRARY(TagLib_LIBRARY tag
   DOC "The TagLib library"
   )
 
-FIND_PACKAGE(ZLIB REQUIRED)
 FIND_PACKAGE(Threads REQUIRED)
 
 INCLUDE_DIRECTORIES(SYSTEM
@@ -36,12 +50,10 @@ INCLUDE_DIRECTORIES(SYSTEM
   ${JNI_ROOT}
   ${JNI_ROOT_W32}
   )
-
 ADD_LIBRARY(codegen SHARED ${codegen_SRCS})
 TARGET_LINK_LIBRARIES(codegen
                       ${CMAKE_THREAD_LIBS_INIT}
                       ${TagLib_LIBRARY}
-                      ${ZLIB_LIBRARIES}
                       )
 SET_TARGET_PROPERTIES(codegen PROPERTIES
   PUBLIC_HEADER "${codegen_HEADERS}"
@@ -68,6 +80,21 @@ ADD_EXECUTABLE(echoprint-codegen
   "${CMAKE_CURRENT_SOURCE_DIR}/Metadata.cxx"
   "${CMAKE_CURRENT_SOURCE_DIR}/SubbandAnalysis.cxx"
   "${CMAKE_CURRENT_SOURCE_DIR}/Whitening.cxx"
+  "${CMAKE_CURRENT_SOURCE_DIR}/adler32.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/compress.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/crc32.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/deflate.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/gzclose.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/gzlib.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/gzread.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/gzwrite.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/infback.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/inffast.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/inflate.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/inftrees.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/trees.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/uncompr.c"
+  "${CMAKE_CURRENT_SOURCE_DIR}/zutil.c"
   )
 TARGET_LINK_LIBRARIES(echoprint-codegen codegen)
 INSTALL(TARGETS echoprint-codegen

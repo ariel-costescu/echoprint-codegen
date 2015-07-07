@@ -2,3 +2,6 @@
 *.dylib
 *.so
 /build/
+/bin/
+/include/
+/lib/
